@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nesne Algılama</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/main"><img src="../static/img/logo.svg" alt="logo" width="30" height="30">
+        </a>
+        <ul class="main-list">
+            < class="list__item">
+                <a href="{{url_for('logout')}}">
+                    <img src="../static/img/login.svg" alt="login" width="20" height="20">
+                </a>
+            
+        </ul>
+    </header>
+    <div class="main">
+        <h1 class="main__title" > Nesne Algılama</h1>
+        <form action="{{ url_for('detection') }}" method="post" enctype="multipart/form-data"  class="creat-form">
+
+            <div class="form_card" >
+                <input type="file" name="image" id="image" accept="image/*" required class="form__buttonimg" onchange="showPreview(event)">
+                <label for="image" id="fileLabel" class="label-custom" >Fotoğrafı Seçin</label>
+                <img id="imagePreview" class="image-preview" alt="Selected Image">
+            </div>
+            <button type="submit" class="form__buttonimg" id="uploadButton">Algıla</button>
+
+        </form>
+
+    </div>
+    {% if result %}
+        <div class="main__block">
+            <h2 class="main__subtitle">{{ result }}</h2>
+            
+            <img src="{{ url_for('static', filename='resimler/output_image.jpg') }}" alt="Algılanmış Görüntü" class="processed-image">
+        </div>
+    {% else %}
+        <p>resim yok</p>
+    {% endif %}
+
+    <script>
+        function showPreview(event) {
+            if (event.target.files.length > 0) {
+                var src = URL.createObjectURL(event.target.files[0]);
+                var preview = document.getElementById("imagePreview");
+                var label = document.getElementById("fileLabel");
+                var uploadButton = document.getElementById("uploadButton");
+
+                preview.src = src;
+                preview.style.display = "block";
+                label.style.display = "none";
+                uploadButton.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

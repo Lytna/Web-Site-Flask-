@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programcının günlüğü</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+  <header class="header">
+    <ul class="main-list">
+        <li class="list__item">
+            <a href="{{url_for('logout')}}">
+                <img src="../static/img/login.svg" alt="login" width="20" height="20">
+            </a>
+    </ul>      
+      <ul class="main-list">
+          <!-- Buraya gerek yok, boş kalmış. -->
+      </ul>
+  </header>
+  <main class="main-login">
+      {% block content %}
+      <div class="link-group">
+          <a href="/index" class="form__a">Günlük</a>
+          <a href="/summary" class="form__a">Özet çıkartma</a>
+          <a href="/background" class="form__a">Arka plan Kaldırma</a>
+          <a href="/detection" class="form__a">Ortam tanıma</a>
+          <br>
+          <a href="/password" class="form__a">Rastgele parola</a>
+          <a href="/api" class="form__a">Rastgele Hayvanalar </a>
+          <a href="/math_game" class="form__a">Matematik oyunu </a>
+      </div>
+      {% endblock %}
+  </main>
+</body>
+</html>

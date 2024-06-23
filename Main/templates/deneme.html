@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tahmin Oyunu</title>
+</head>
+<body>
+    <h1>Sayı Tahmin Oyunu</h1>
+    {% if mesaj %}
+        <p>{{ mesaj }}</p>
+    {% endif %}
+    {% if devam %}
+        <form action="{{ url_for('tahmin') }}" method="post">
+            <input type="text" name="tahmin" required>
+            <button type="submit">Tahmin Et</button>
+        </form>
+    {% else %}
+        <form action="{{ url_for('reset') }}" method="get">
+            <button type="submit">Yeniden Başlat</button>
+        </form>
+    {% endif %}
+</body>
+</html>

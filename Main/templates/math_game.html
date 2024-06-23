@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script>
+        // Sayfa yüklendiğinde input alanına odaklanma fonksiyonu
+        window.onload = function() {
+            document.getElementById('focusInput').focus();
+        };
+    </script>
+</head>
+<body>
+    <header class="header">
+        <a href="/main">
+            <img src="../static/img/logo.svg" alt="logo" width="30" height="30">
+        </a>
+        <ul class="main-list">
+            <li class="list__item">
+                <a href="{{url_for('logout')}}">
+                    <img src="../static/img/login.svg" alt="login" width="20" height="20">
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="main">
+        <h1 class="main__title">Math Game</h1>
+        <form method="POST" id="mathForm" class="creat-form">
+            {% if ifade %}
+                <div class="form__card">
+                    <p class="main__block">Soru {{ current_question }}: {{ ifade }}</p>
+                    <label for="answer">Cevabınızı girin:</label>
+                    <input type="text" id="focusInput" name="answer" class="form__input" required>
+                    <div class="form__buttons">
+                        <button type="submit" class="form__button">Cevabı Gönder</button>
+
+                    </div>
+                </div>
+            {% else %}
+                <div class="form__card">
+                    <div class="form__inputs">
+                        <label for="min_operand">Minimum Değer:</label>
+                        <input type="number" id="min_operand" name="min_operand" class="form__input"  required>
+                        <label for="max_operand">Maksimum Değer:</label>
+                        <input type="number" id="max_operand" name="max_operand" class="form__input" required>
+                        <label for="toplam_soru">Toplam Soru:</label>
+                        <input type="number" id="toplam_soru" name="toplam_soru" class="form__input" required>
+                        <label for="operatorler">Operatörler (örn. +,-,*):</label>
+                        <input type="text" id="operatorler" name="operatorler" class="form__input" required>
+                    </div>
+                    <button type="submit" class="form__button">Oyunu Başlat</button>
+                </div>
+            {% endif %}
+        </form>
+    </div>
+</body>
+</html>

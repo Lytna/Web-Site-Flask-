@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programcının Günlüğü</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <a href="/main">
+            <img src="{{ url_for('static', filename='img/logo.svg') }}" alt="logo" width="30" height="30">
+        </a>
+        <ul class="main-list">
+            <li class="list__item">
+                <a href="{{ url_for('logout') }}">
+                    <img src="{{ url_for('static', filename='img/login.svg') }}" alt="login" width="20" height="20">
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="main">
+        <form method="POST" class="animal-form">
+            <label for="animal">Hayvan Seç:</label>
+            <select name="animal" id="mySelect" class="custom-select">
+                <option value="duck">Ördek</option>
+                <option value="dog" >Köpek</option>
+                <!-- Diğer seçenekleri buraya ekleyebilirsiniz -->
+            </select>
+            <button type="submit" class="main__button">Fotoğraf Getir</button>
+        </form>
+        <div class="main__block">
+            <img src="{{ duck }}" alt="Animal Image" class="main__blockimg">
+        </div>
+        <button class="main__button" onclick="refreshPage()">Sayfayı Yenile</button>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const selectElement = document.getElementById('mySelect');
+            
+            // Sayfa yüklendiğinde localStorage'dan seçimi al ve varsayılan olarak ayarla
+            const savedValue = localStorage.getItem('selectedOption');
+            if (savedValue) {
+                selectElement.value = savedValue;
+            }
+
+            // Seçim değiştiğinde localStorage'a kaydet
+            selectElement.addEventListener('change', function() {
+                localStorage.setItem('selectedOption', selectElement.value);
+            });
+        });        
+        function refreshPage() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

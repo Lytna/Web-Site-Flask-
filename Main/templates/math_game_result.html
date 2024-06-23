@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Game Result</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/main">
+            <img src="../static/img/logo.svg" alt="logo" width="30" height="30">
+        </a>
+        <ul class="main-list">
+            <li class="list__item">
+                <a href="{{ url_for('logout') }}">
+                    <img src="../static/img/login.svg" alt="login" width="20" height="20">
+                </a>
+            </li>
+        </ul>
+    </header>
+    <div class="main">
+        <div class="main__block">
+            <h1 class="main__title">Oyun Sonucu</h1>
+            <p class="main__text">Toplam Süre: {{ toplam_sure }} saniye</p>
+            <p class="main__text">Doğru Cevap Sayısı: {{ score }}</p>
+            <p class="main__text">Yanlış Cevap Sayısı: {{ yanlis }}</p>
+            <a href="{{ url_for('math_game_route') }}" class="main__link">Yeniden Oyna</a>
+
+        </div>
+    </div>
+</body>
+</html>
